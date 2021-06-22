@@ -9,14 +9,16 @@ function showModalWin() {
     let buttonRetention = document.getElementById('buttonRetention');
 
     buttonRetention.onclick= function () {
-    	let body = {
-     		returnedUsers: returnedUsers.value,
-     		points: points.value,
-    	};
-    	
+    	let body ='percentage_points='+returnedUsers.value+'&'+'points_to_predict'+points.value;
+    	console.log(body);
+    	// let body = {
+     // 		'percentage_points': returnedUsers.value,
+     // 		'points_to_predict': points.value,
+    	// };
+    	 	
     	fetch('https://api.tachyon-analytics.com/predict/', {
     		method: 'POST',
-    		body: JSON.stringify(body),
+    		body: body,
     	}).then(res => res.json())
     	.then(json => {
     		console.log(json);
